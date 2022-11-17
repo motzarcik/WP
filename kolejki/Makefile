@@ -1,13 +1,19 @@
-CC=cc
+CC=g++
 CFLAGS=-I.
 
-all: widoczne kolejka_przyklad
+all: nawiasowanie widoczne kolejka_przyklad
 
 widoczne: widoczne.o kolejka.o
 	$(CC) -o widoczne widoczne.o kolejka.o
 
 widoczne.o: widoczne.c kolejka.h
 	$(CC) -c widoczne.c
+	
+nawiasowanie: nawiasowanie.o 
+	$(CC) -o nawiasowanie nawiasowanie.o
+
+nawiasowanie.o: nawiasowanie.c
+	$(CC) -c nawiasowanie.c
 	
 kolejka_przyklad: kolejka_przyklad.o kolejka.o
 	$(CC) -o kolejka_przyklad kolejka_przyklad.o kolejka.o

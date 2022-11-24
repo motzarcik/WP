@@ -41,13 +41,13 @@ void reallocate(queue* q) {
     exit(0);
   }
   
-  q->start = 0;
   for (int i = 0; i < q->data_size; i++) {
     new_data[i] = q->data[(q->start + i) % q->data_size];
   }
   free(q->data);
-  q->data = new_data;
   
+  q->start = 0;
+  q->data = new_data;
   q->data_size = 2 * q->data_size;
 }
 

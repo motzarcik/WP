@@ -13,9 +13,8 @@
 
 typedef struct event {   
    int time;
-   int firend;
   // status to +1 lub -1: +1 oznacza, ze kolega w tym momencie rozpoczyna swoją dostępność,
-  // a -1 oznacza, e kończy się jego okres dostępności.
+  // a -1 oznacza, ze kończy się jego okres dostępności (ostatni moment dostepnosci to (time-1)).
    int status;
 } event;
 
@@ -36,11 +35,11 @@ bool compare_events(event a, event b){
 int rejs(int k, std::vector<int> start, std::vector<int> end) {
   std::vector<event> events; 
   for (int i = 0; i < start.size(); i++) {
-    event e = {start[i], i, 1};
+    event e = {start[i], 1};
     events.push_back(e);
   }
   for (int i = 0; i < end.size(); i++) {
-    event e = {end[i], i, -1};
+    event e = {end[i], -1};
     events.push_back(e);
   }
   sort(events.begin(), events.end(), compare_events);
@@ -109,10 +108,12 @@ int main()
   w = rejs(25, start3, end3);
   assert(w == 0);
 
-  int start_arr4[] = {1, 1, 1, 1, 1, 7, 7, 7, 7, 15, 36};
-  std::vector<int> start4(start_arr4, start_arr4 + 11);
-  int end_arr4[] = {5, 4, 8, 6, 7, 12, 12, 12, 14, 35, 40};
-  std::vector<int> end4(end_arr4, end_arr4 + 11);
+  int start_arr4[] = {1, 1, 1, 1, 1, 7, 7, 7, 7, 15, 36, 7, 7, 7, 7, 7, 7};
+  std::vector<int> start4(start_arr4, start_arr4 + 17);
+  int end_arr4[] = {5, 4, 8, 6, 7, 12, 12, 12, 14, 35, 40, 10, 10, 10, 10, 10, 10};
+  std::vector<int> end4(end_arr4, end_arr4 + 17);
+  w = rejs(3, start4, end4);
+  assert(w == 10);
   w = rejs(5, start4, end4);
   assert(w == 4);
   w = rejs(6, start4, end4);

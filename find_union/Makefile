@@ -1,7 +1,7 @@
 CC=g++
 CFLAGS=-I.
 
-all: find_union_przyklad skarbonki
+all: find_union_przyklad skarbonki malpki
 	
 find_union_przyklad: find_union_przyklad.o find_union.o
 	$(CC) -o find_union_przyklad find_union_przyklad.o find_union.o
@@ -15,8 +15,14 @@ skarbonki: skarbonki.o find_union.o
 skarbonki.o: skarbonki.cpp find_union.h
 	$(CC) -c skarbonki.cpp
 
+malpki: malpki.o find_union.o
+	$(CC) -o malpki malpki.o find_union.o
+
+malpki.o: malpki.cpp find_union.h
+	$(CC) -c malpki.cpp
+
 find_union.o: find_union.cpp find_union.h
 	$(CC) -c find_union.cpp
 	
 clean:
-	rm -f *.o find_union_przyklad skarbonki
+	rm -f *.o find_union_przyklad skarbonki malpki

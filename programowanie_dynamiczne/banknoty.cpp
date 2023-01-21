@@ -34,8 +34,8 @@ int main() {
         wypłacenia wynik[i][j]. Na tej podstawie możemy już wyliczyć dokładne
         rozwiązanie.
         * Zauważmy, że moglibyśmy wyliczać te tablice ze wzorów:
-        wynik[i][j] = min_{0 <= l <= c[i]} wynik[i-1][j-l*b[i]]
-        ile[i] = argmin_{0 <= l <= c[i]} wynik[i-1][j-l*b[i]]
+        wynik[i][j] = min_{0 <= l <= c[i]} wynik[i-1][j-l*b[i]]+l
+        ile[i] = argmin_{0 <= l <= c[i]} wynik[i-1][j-l*b[i]]+l
         Bezpośrednie zaaplikowanie tych wzorów daje rozwiązanie w O(nk^2).
         * Teraz tak: chcemy przyspieszyć wyliczanie tych minimów. Bazujemy na
         pomyśle, że jeśli wyliczyliśmy już wynik[i][j-l*b[i]] dla wszystkich
